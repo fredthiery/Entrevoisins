@@ -16,10 +16,14 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.assertThat;
+import static android.support.test.espresso.matcher.ViewMatchers.hasDescendant;
 import static android.support.test.espresso.matcher.ViewMatchers.hasMinimumChildCount;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static com.openclassrooms.entrevoisins.utils.RecyclerViewItemCountAssertion.withItemCount;
+import static org.hamcrest.Matchers.not;
 import static org.hamcrest.core.IsNull.notNullValue;
 
 
@@ -32,6 +36,7 @@ public class NeighboursListTest {
 
     // This is fixed
     private static int ITEMS_COUNT = 12;
+    private static int FAVORITES_COUNT = 3;
 
     private ListNeighbourActivity mActivity;
 
@@ -67,5 +72,27 @@ public class NeighboursListTest {
                 .perform(RecyclerViewActions.actionOnItemAtPosition(1, new DeleteViewAction()));
         // Then : the number of element is 11
         onView(ViewMatchers.withId(R.id.list_neighbours)).check(withItemCount(ITEMS_COUNT-1));
+    }
+
+    /**
+     * When we click on an item, the details activity is shown
+     */
+    @Test
+    public void myNeighboursList_clickAction_shouldDisplayDetailActivity() {
+        onView(ViewMatchers.withId(R.id.list_neighbours)).perform(click());
+        onView(ViewMatchers.withId(R.id.activity_neighbour_detail_picture)).check(matches(isDisplayed()));
+    }
+
+    /**
+     * Checks that the favorites tab only displays neighbours marked as favorites
+     */
+    @Test
+    public void myFavoritesList_onlyDisplaysFavorites() {
+        onView(ViewMatchers.withId(R.id.list_favorites)).check(withItemCount(FAVORITES_COUNT));
+        onView(ViewMatchers.withId(R.id.list_favorites)).check(matches(hasDescendant(ViewMatchers.withText("Caroline"))));
+        onView(ViewMatchers.withId(R.id.list_favorites)).check(matches(hasDescendant(ViewMatchers.withText("Dan"))));
+        onView(ViewMatchers.withId(R.id.list_favorites)).check(matches(hasDescendant(ViewMatchers.withText("Vincent"))));
+        onView(ViewMatchers.withId(R.id.list_favorites)).check(matches(not(hasDescendant(ViewMatchers.withText("Chloé")))));
+        onView(ViewMatchers.withId(R.id.list_favorites)).check(matches(not(hasDescendant(ViewMatchers.withText("Patrick")))));
     }
 }

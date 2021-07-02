@@ -3,4 +3,8 @@
     <string name="tab_neighbour_title">My neighbours</string>
     <string name="tab_favorites_title">Favorites</string>
     <string name="activity_new_neighbour">New neighbour</string>
+    <string name="detail_picture_description">Photo de la personne</string>
+    <string name="detail_favorite_this_person">Favorite this person</string>
+    <string name="detail_about">À propos de moi</string>
+    <string name="detail_url">www.facebook.com/%s</string>
 </resources>

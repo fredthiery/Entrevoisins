@@ -27,14 +27,17 @@ public class NeighbourFragment extends Fragment {
     private NeighbourApiService mApiService;
     private List<Neighbour> mNeighbours;
     private RecyclerView mRecyclerView;
+    private boolean mFavorite;
 
 
     /**
      * Create and return a new instance
      * @return @{@link NeighbourFragment}
      */
-    public static NeighbourFragment newInstance() {
+    public static NeighbourFragment newInstance(boolean fav) {
         NeighbourFragment fragment = new NeighbourFragment();
+        fragment.mFavorite = fav;
+
         return fragment;
     }
 
@@ -48,6 +51,11 @@ public class NeighbourFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_neighbour_list, container, false);
+
+        // Applique l’id de la view selon qu’il s’agit de la liste de favoris ou non
+        if (mFavorite) view.setId(R.id.list_favorites);
+        else view.setId(R.id.list_neighbours);
+
         Context context = view.getContext();
         mRecyclerView = (RecyclerView) view;
         mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
@@ -59,7 +67,9 @@ public class NeighbourFragment extends Fragment {
      * Init the List of neighbours
      */
     private void initList() {
-        mNeighbours = mApiService.getNeighbours();
+        // Récupère la liste normale ou favorite selon la valeur de mFavorite
+        if (mFavorite) mNeighbours = mApiService.getFavorites();
+        else mNeighbours = mApiService.getNeighbours();
         mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mNeighbours));
     }
 

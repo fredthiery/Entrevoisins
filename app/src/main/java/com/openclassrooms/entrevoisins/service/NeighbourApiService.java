@@ -27,4 +27,19 @@ public interface NeighbourApiService {
      * @param neighbour
      */
     void createNeighbour(Neighbour neighbour);
+
+    /**
+     * Get a list of favorite neighbours
+     * @return {@link List}
+     */
+    // Ajouté pour afficher la liste de favoris
+    List<Neighbour> getFavorites();
+
+    /**
+     * Returns a neighbour from its id
+     * @param id
+     * @return {@link Neighbour}
+     */
+    // Ajouté pour afficher les détails d’un voisin - TODO Chercher une meilleure manière de faire
+    Neighbour getFromId(long id);
 }

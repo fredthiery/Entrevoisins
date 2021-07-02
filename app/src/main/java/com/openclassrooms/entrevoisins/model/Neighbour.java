@@ -1,11 +1,16 @@
 package com.openclassrooms.entrevoisins.model;
 
+import android.databinding.BaseObservable;
+import android.databinding.Bindable;
+
+import com.openclassrooms.entrevoisins.BR;
+
 import java.util.Objects;
 
 /**
  * Model object representing a Neighbour
  */
-public class Neighbour {
+public class Neighbour extends BaseObservable {
 
     /** Identifier */
     private long id;
@@ -25,6 +30,10 @@ public class Neighbour {
     /** About me */
     private String aboutMe;
 
+    /** Favorite */
+    // Membre ajouté pour stocker le statut favori d’un voisin
+    private boolean favorite;
+
     /**
      * Constructor
      * @param id
@@ -39,6 +48,19 @@ public class Neighbour {
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.aboutMe = aboutMe;
+        this.favorite = false;
+    }
+
+    // Surcharge du constructeur pour accepter le paramètre favorite
+    public Neighbour(long id, String name, String avatarUrl, String address,
+                     String phoneNumber, String aboutMe, boolean favorite) {
+        this.id = id;
+        this.name = name;
+        this.avatarUrl = avatarUrl;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.aboutMe = aboutMe;
+        this.favorite = favorite;
     }
 
     public long getId() {
@@ -100,5 +122,18 @@ public class Neighbour {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @Bindable
+    public boolean isFavorite() {
+        // Indique le statut favori du voisin
+        return favorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        // Applique le statut favori du voisin
+        this.favorite = favorite;
+        // Permet de mettre à jour le bouton de favoris grâce à BaseObservable
+        notifyPropertyChanged(BR.favorite);
     }
 }
