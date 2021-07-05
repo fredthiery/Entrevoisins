@@ -42,13 +42,7 @@ public class Neighbour extends BaseObservable {
      */
     public Neighbour(long id, String name, String avatarUrl, String address,
                      String phoneNumber, String aboutMe) {
-        this.id = id;
-        this.name = name;
-        this.avatarUrl = avatarUrl;
-        this.address = address;
-        this.phoneNumber = phoneNumber;
-        this.aboutMe = aboutMe;
-        this.favorite = false;
+        this(id, name, avatarUrl, address, phoneNumber, aboutMe, false);
     }
 
     // Surcharge du constructeur pour accepter le paramètre favorite
