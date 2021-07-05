@@ -53,7 +53,7 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
             }
         });
         // Ajoute un OnClickListener sur l’élément complet pour afficher la page de détails
-        holder.mNeighbourItem.setOnClickListener(v -> {
+        holder.itemView.setOnClickListener(v -> {
             Intent detailActivity = new Intent(v.getContext(), NeighbourDetailActivity.class);
             // Utilise un Extra pour transmettre l’Id du voisin à l’activité NeighbourDetail
             detailActivity.putExtra("Id", neighbour.getId());
@@ -67,9 +67,6 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        // Ajout d’un id à l’élément de liste complet pour gérer le clic
-        @BindView(R.id.item_list_neighbour)
-        public View mNeighbourItem;
         @BindView(R.id.item_list_avatar)
         public ImageView mNeighbourAvatar;
         @BindView(R.id.item_list_name)
