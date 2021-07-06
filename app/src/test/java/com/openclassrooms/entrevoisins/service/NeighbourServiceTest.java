@@ -68,13 +68,17 @@ public class NeighbourServiceTest {
 
     @Test
     public void getNeighbourFromIdWithSuccess() {
+        // GIVEN
         Neighbour expectedNeighbour = DummyNeighbourGenerator.DUMMY_NEIGHBOURS.get(5);
+        // WHEN
         Neighbour neighbour = service.getFromId(6);
+        // THEN
         assertEquals(neighbour,expectedNeighbour);
     }
 
     @Test
     public void getFavoritesWithSuccess() {
+        // GIVEN
         List<Neighbour> expectedFavorites = Arrays.asList(
                 new Neighbour(1, "Caroline", "https://i.pravatar.cc/150?u=a042581f4e29026704d", "Saint-Pierre-du-Mont ; 5km",
                         "+33 6 86 57 90 14",  "Bonjour !Je souhaiterais faire de la marche nordique. Pas initiée, je recherche une ou plusieurs personnes susceptibles de m'accompagner !J'aime les jeux de cartes tels la belote et le tarot..", true),
@@ -83,7 +87,9 @@ public class NeighbourServiceTest {
                 new Neighbour(8, "Dan", "https://i.pravatar.cc/150?u=a042581f4e29026703b", "Saint-Pierre-du-Mont ; 5km",
                         "+33 6 86 57 90 14",  "Bonjour !Je souhaiterais faire de la marche nordique. Pas initiée, je recherche une ou plusieurs personnes susceptibles de m'accompagner !J'aime les jeux de cartes tels la belote et le tarot..", true)
         );
+        // WHEN
         List<Neighbour> favorites = service.getFavorites();
+        // THEN
         assertThat(favorites, IsIterableContainingInAnyOrder.containsInAnyOrder(expectedFavorites.toArray()));
     }
 }

@@ -5,7 +5,7 @@ import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
 import com.openclassrooms.entrevoisins.R;
-import com.openclassrooms.entrevoisins.ui.neighbour_list.NeighbourDetailActivity;
+import com.openclassrooms.entrevoisins.ui.neighbour_detail.NeighbourDetailActivity;
 
 import org.junit.Before;
 import org.junit.Rule;

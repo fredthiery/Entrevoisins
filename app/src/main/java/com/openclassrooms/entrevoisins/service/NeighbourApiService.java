@@ -40,6 +40,6 @@ public interface NeighbourApiService {
      * @param id
      * @return {@link Neighbour}
      */
-    // Ajouté pour afficher les détails d’un voisin - TODO Chercher une meilleure manière de faire
+    // Ajouté pour afficher les détails d’un voisin
     Neighbour getFromId(long id);
 }

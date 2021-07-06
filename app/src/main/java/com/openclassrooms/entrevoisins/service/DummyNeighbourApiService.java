@@ -43,7 +43,7 @@ public class DummyNeighbourApiService implements  NeighbourApiService {
      */
     @Override
     public List<Neighbour> getFavorites() {
-        // Parcoure la liste de voisins et renvoie une liste de ceux avec le statut favori
+        // Parcourt la liste de voisins et renvoie une liste de ceux avec le statut favori
         List<Neighbour> favorites = new ArrayList<Neighbour>();
         for (Neighbour n: neighbours){
             if (n.isFavorite()) {
@@ -58,7 +58,7 @@ public class DummyNeighbourApiService implements  NeighbourApiService {
      */
     @Override
     public Neighbour getFromId(long id) {
-        // Parcoure la liste de voisins et renvoie celui qui correspond à l’id ou null si aucun trouvé
+        // Parcourt la liste de voisins et renvoie celui qui correspond à l’id ou null si aucun trouvé
         for (Neighbour n: neighbours) {
             if (id == n.getId()) {
                 return n;

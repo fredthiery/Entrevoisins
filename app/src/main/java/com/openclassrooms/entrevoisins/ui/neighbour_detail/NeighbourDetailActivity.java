@@ -1,4 +1,4 @@
-package com.openclassrooms.entrevoisins.ui.neighbour_list;
+package com.openclassrooms.entrevoisins.ui.neighbour_detail;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;

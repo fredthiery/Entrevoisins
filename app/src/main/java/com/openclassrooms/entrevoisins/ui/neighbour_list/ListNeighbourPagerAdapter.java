@@ -19,7 +19,7 @@ public class ListNeighbourPagerAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         // Appelle une nouvelle instance de NeighbourFragment normale (position 0) ou favorite (position 1)
-        return NeighbourFragment.newInstance(position > 0);
+        return NeighbourFragment.newInstance(position == 1);
     }
 
     /**
