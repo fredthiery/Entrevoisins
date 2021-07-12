@@ -17,6 +17,7 @@ import org.junit.runner.RunWith;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.pressBack;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.assertThat;
 import static android.support.test.espresso.matcher.ViewMatchers.hasDescendant;
@@ -94,5 +95,20 @@ public class NeighboursListTest {
         onView(ViewMatchers.withId(R.id.list_favorites)).check(matches(hasDescendant(ViewMatchers.withText("Vincent"))));
         onView(ViewMatchers.withId(R.id.list_favorites)).check(matches(not(hasDescendant(ViewMatchers.withText("Chloé")))));
         onView(ViewMatchers.withId(R.id.list_favorites)).check(matches(not(hasDescendant(ViewMatchers.withText("Patrick")))));
+    }
+
+    /**
+     * Checks that clicking you can add a favorite by clicking on the button on the detailActivity
+     */
+    @Test
+    public void favoriteActionButton_addsAFavorite() {
+        // Given : we check the favorites list item count
+        onView(ViewMatchers.withId(R.id.list_favorites)).check(withItemCount(FAVORITES_COUNT));
+        // When : we click on the Favorite Action Button
+        onView(ViewMatchers.withId(R.id.list_neighbours)).perform(RecyclerViewActions.actionOnItemAtPosition(1, click()));
+        onView(ViewMatchers.withId(R.id.favoriteActionButton)).perform(click());
+        onView(ViewMatchers.isRoot()).perform(pressBack());
+        // Then : the favorites list has one more element
+        onView(ViewMatchers.withId(R.id.list_favorites)).check(withItemCount(FAVORITES_COUNT+1));
     }
 }
